@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>НеБар Тех Клуб — IT, энергия и встречи без алкоголя</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="НеБар Тех Клуб — киберпанк-комьюнити для айтишников и фаундеров: технологии, энергия и живые встречи без алкоголя."
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular"],
+            },
+            colors: {
+              nebBg: "#050816",
+              nebBg2: "#020617",
+              neonCyan: "#22d3ee",
+              neonPurple: "#a855f7",
+              neonPink: "#ec4899",
+              neonLime: "#a3e635",
+            },
+            boxShadow: {
+              neon: "0 0 25px rgba(34, 211, 238, 0.4)",
+              neonPurple: "0 0 25px rgba(168, 85, 247, 0.4)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Nice fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* simple scanline background effect */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: linear-gradient(
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px
+        );
+        background-size: 100% 2px;
+        opacity: 0.2;
+        z-index: 0;
+      }
+
+      .glow-border {
+        box-shadow: 0 0 25px rgba(34, 211, 238, 0.35);
+      }
+
+      .neon-button {
+        box-shadow: 0 0 18px rgba(34, 211, 238, 0.65);
+      }
+
+      .neon-button:hover {
+        box-shadow: 0 0 25px rgba(34, 211, 238, 0.9);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body class="bg-nebBg text-slate-100 font-sans relative">
+    <!-- gradient background blobs -->
+    <div
+      class="pointer-events-none fixed inset-0 -z-10 bg-gradient-to-b from-slate-950 via-nebBg2 to-black"
+    ></div>
+    <div
+      class="pointer-events-none fixed -left-32 -top-32 h-72 w-72 rounded-full bg-neonPurple/20 blur-3xl"
+    ></div>
+    <div
+      class="pointer-events-none fixed right-0 top-1/3 h-80 w-80 rounded-full bg-neonCyan/20 blur-3xl"
+    ></div>
+
+    <!-- Page wrapper -->
+    <div class="relative z-10 min-h-screen flex flex-col">
+      <!-- NAVBAR -->
+      <header
+        class="border-b border-white/5 bg-black/30 backdrop-blur-md sticky top-0 z-30"
+      >
+        <div
+          class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6"
+        >
+          <div class="flex items-center gap-2">
+            <div
+              class="h-8 w-8 rounded-full bg-gradient-to-tr from-neonCyan via-neonPurple to-neonPink shadow-neonPurple"
+            ></div>
+            <div class="flex flex-col leading-tight">
+              <span class="text-sm font-mono tracking-[0.15em] uppercase">
+                НеБар
+              </span>
+              <span class="text-xs text-slate-400">Tech Club</span>
+            </div>
+          </div>
+
+          <nav class="hidden gap-6 text-xs sm:flex text-slate-300">
+            <a href="#about" class="hover:text-neonCyan">О клубе</a>
+            <a href="#activities" class="hover:text-neonCyan">Форматы</a>
+            <a href="#who" class="hover:text-neonCyan">Кому</a>
+            <a href="#join" class="hover:text-neonCyan">Войти в сеть</a>
+          </nav>
+
+          <a
+            href="#join"
+            class="neon-button hidden rounded-full border border-neonCyan/70 bg-neonCyan/20 px-4 py-1.5 text-xs font-semibold text-neonCyan shadow-neon transition hover:bg-neonCyan/30 sm:inline-block"
+          >
+            Войти в сеть
+          </a>
+        </div>
+      </header>
+
+      <!-- MAIN -->
+      <main class="flex-1">
+        <!-- HERO -->
+        <section
+          class="border-b border-white/5 bg-gradient-to-b from-transparent via-white/5/0 to-white/5/0"
+        >
+          <div
+            class="mx-auto flex max-w-5xl flex-col gap-10 px-4 py-10 sm:px-6 sm:py-16 lg:flex-row lg:items-center lg:py-20"
+          >
+            <!-- Left text -->
+            <div class="flex-1 space-y-5">
+              <p
+                class="inline-flex items-center gap-2 rounded-full border border-slate-700/80 bg-black/40 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-slate-400"
+              >
+                <span class="h-1.5 w-1.5 rounded-full bg-neonCyan"></span>
+                Online + Offline / Alcohol: OFF / Focus: ON
+              </p>
+
+              <h1
+                class="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl"
+              >
+                <span class="block text-slate-100">НеБар Тех Клуб</span>
+                <span
+                  class="mt-2 block bg-gradient-to-r from-neonCyan via-neonPurple to-neonPink bg-clip-text text-transparent"
+                >
+                  IT, энергия и живые встречи без алкоголя
+                </span>
+              </h1>
+
+              <p class="max-w-xl text-sm text-slate-300 sm:text-base">
+                Киберпанк-комьюнити для разработчиков и фаундеров, которые
+                выбирают ясную голову, движение и реальные разговоры вместо
+                барного шума. Прогулки, коуоркинги, демо-дни и активности —
+                трезво, по-человечески, по-айтишному.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-3 pt-2">
+                <a
+                  href="#join"
+                  class="neon-button rounded-full bg-neonCyan px-6 py-2 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
+                >
+                  Войти в ядро
+                </a>
+                <a
+                  href="#about"
+                  class="rounded-full border border-slate-600 bg-slate-900/40 px-5 py-2 text-xs font-medium text-slate-200 hover:border-neonCyan/70 hover:text-neonCyan"
+                >
+                  Узнать подробнее
+                </a>
+              </div>
+
+              <div class="pt-3 text-xs text-slate-400">
+                <p>Малые группы • Без алкоголя • Свои люди</p>
+              </div>
+            </div>
+
+            <!-- Right "image" block -->
+            <div class="flex-1">
+              <div
+                class="glow-border relative overflow-hidden rounded-3xl border border-slate-700 bg-slate-950/70 p-4 sm:p-5"
+              >
+                <div
+                  class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-neonCyan/10 blur-3xl"
+                ></div>
+                <div
+                  class="absolute -right-16 bottom-0 h-40 w-40 rounded-full bg-neonPurple/15 blur-3xl"
+                ></div>
+
+                <div
+                  class="relative flex flex-col gap-3 text-xs font-mono text-slate-200"
+                >
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] uppercase tracking-[0.18em]">
+                      /nebar_tech_club
+                    </span>
+                    <span class="rounded-full border border-neonCyan/40 px-2 py-0.5 text-[10px] text-neonCyan"
+                      >online & offline</span
+                    >
+                  </div>
+
+                  <div
+                    class="mt-1 grid grid-cols-2 gap-3 text-[11px] sm:text-xs"
+                  >
+                    <div
+                      class="rounded-2xl border border-slate-700 bg-slate-900/80 p-3"
+                    >
+                      <p
+                        class="mb-1 text-[10px] uppercase tracking-[0.16em] text-slate-400"
+                      >
+                        Modes
+                      </p>
+                      <div class="space-y-1.5">
+                        <div class="flex items-center justify-between">
+                          <span>Alcohol</span>
+                          <span
+                            class="rounded-full border border-pink-500/60 bg-pink-500/20 px-2 py-[2px] text-[10px] text-pink-300"
+                            >OFF</span
+                          >
+                        </div>
+                        <div class="flex items-center justify-between">
+                          <span>Focus</span>
+                          <span
+                            class="rounded-full border border-neonCyan/60 bg-neonCyan/20 px-2 py-[2px] text-[10px] text-neonCyan"
+                            >ON</span
+                          >
+                        </div>
+                        <div class="flex items-center justify-between">
+                          <span>Energy</span>
+                          <span
+                            class="rounded-full border border-neonLime/60 bg-neonLime/20 px-2 py-[2px] text-[10px] text-neonLime"
+                            >BOOST</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="rounded-2xl border border-slate-700 bg-slate-900/80 p-3"
+                    >
+                      <p
+                        class="mb-1 text-[10px] uppercase tracking-[0.16em] text-slate-400"
+                      >
+                        Formats
+                      </p>
+                      <ul class="space-y-1.5">
+                        <li class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-neonCyan">
+                          </span>
+                          <span>Walk & Talk</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-neonPurple">
+                          </span>
+                          <span>Tech Coworking</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-neonPink">
+                          </span>
+                          <span>Demo Nights</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div
+                    class="mt-2 flex items-center justify-between border-t border-slate-800 pt-2 text-[10px] text-slate-400"
+                  >
+                    <span>City: CyberKazan (IRL)</span>
+                    <span>Protocol: FRIENDLY / LOW-DRAMA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="border-b border-white/5 bg-black/40">
+          <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+            <div class="grid gap-8 md:grid-cols-[1.3fr,1fr]">
+              <div>
+                <h2
+                  class="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-neonCyan"
+                >
+                  / about
+                </h2>
+                <h3 class="text-xl font-semibold sm:text-2xl">
+                  Клуб для тех, кто хочет жить, работать и общаться
+                  <span
+                    class="bg-gradient-to-r from-neonCyan via-neonPurple to-neonPink bg-clip-text text-transparent"
+                    >без тумана в голове</span
+                  >.
+                </h3>
+                <p class="mt-4 text-sm text-slate-300 sm:text-[15px]">
+                  НеБар Тех Клуб — это комьюнити айтишников, фаундеров и всех,
+                  кто связан с технологиями, но не хочет, чтобы каждая встреча
+                  заканчивалась баром. Здесь — прогулки, коуоркинги, демо-дни,
+                  диалоги про жизнь и работу, спорт и энергию.
+                </p>
+                <p class="mt-3 text-sm text-slate-400">
+                  Никакой сектантской «зожи» и морализаторства. Просто люди,
+                  которые выбирают ясный фокус, здоровье и нормальную
+                  продуктивную жизнь.
+                </p>
+              </div>
+
+              <div
+                class="rounded-3xl border border-slate-700 bg-slate-950/70 p-4 text-xs text-slate-300"
+              >
+                <p class="text-[10px] font-mono uppercase tracking-[0.16em]">
+                  / manifest
+                </p>
+                <ul class="mt-3 space-y-2.5">
+                  <li class="flex gap-2">
+                    <span class="mt-1 h-1.5 w-1.5 rounded-full bg-neonCyan">
+                    </span>
+                    <span
+                      >Мы за ясную голову, честные разговоры и действия
+                      вместо обещаний.</span
+                    >
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="mt-1 h-1.5 w-1.5 rounded-full bg-neonPurple">
+                    </span>
+                    <span
+                      >Мы собираемся оффлайн и онлайн, чтобы делиться опытом,
+                      проектами и поддержкой.</span
+                    >
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="mt-1 h-1.5 w-1.5 rounded-full bg-neonPink">
+                    </span>
+                    <span
+                      >Мы не соревнуемся, кто больше выпьет. Мы смотрим, кто
+                      дальше дошёл по своим целям.</span
+                    >
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="mt-1 h-1.5 w-1.5 rounded-full bg-neonLime">
+                    </span>
+                    <span
+                      >Мы строим окружение, в котором нормально быть собой,
+                      расти и не выгорать.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ACTIVITIES -->
+        <section
+          id="activities"
+          class="border-b border-white/5 bg-gradient-to-b from-black/40 to-slate-950"
+        >
+          <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+            <div class="mb-6 flex items-end justify-between gap-4">
+              <div>
+                <h2
+                  class="text-xs font-mono uppercase tracking-[0.2em] text-neonCyan"
+                >
+                  / formats
+                </h2>
+                <h3 class="text-xl font-semibold sm:text-2xl">
+                  Что мы делаем в клубе
+                </h3>
+                <p class="mt-3 text-sm text-slate-300">
+                  Легкие, живые форматы, в которых проще разговаривать, чем
+                  молчать.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <!-- Card 1 -->
+              <div
+                class="glow-border rounded-3xl border border-slate-700 bg-slate-950/70 p-4"
+              >
+                <p
+                  class="text-[10px] font-mono uppercase tracking-[0.16em] text-slate-400"
+                >
+                  01 / Walk & Talk
+                </p>
+                <h4 class="mt-2 text-[15px] font-semibold">
+                  Прогулки и разговоры
+                </h4>
+                <p class="mt-2 text-xs text-slate-300 sm:text-sm">
+                  40–90 минут пешком, где можно проговорить то, на что обычно
+                  не хватает пространства: проекты, жизнь, планы, сложности.
+                  Без шума, без давления, в комфортном темпе.
+                </p>
+              </div>
+
+              <!-- Card 2 -->
+              <div
+                class="rounded-3xl border border-slate-700 bg-slate-950/80 p-4"
+              >
+                <p
+                  class="text-[10px] font-mono uppercase tracking-[0.16em] text-slate-400"
+                >
+                  02 / Tech Coworking
+                </p>
+                <h4 class="mt-2 text-[15px] font-semibold">
+                  Совместная работа
+                </h4>
+                <p class="mt-2 text-xs text-slate-300 sm:text-sm">
+                  Собираемся с ноутами, каждый делает свои задачи. В конце —
+                  короткий круг: чем занимался, что получилось, какие инсайты.
+                  Поддержка и ощущение, что ты не один.
+                </p>
+              </div>
+
+              <!-- Card 3 -->
+              <div
+                class="rounded-3xl border border-slate-700 bg-slate-950/80 p-4"
+              >
+                <p
+                  class="text-[10px] font-mono uppercase tracking-[0.16em] text-slate-400"
+                >
+                  03 / Demo Nights
+                </p>
+                <h4 class="mt-2 text-[15px] font-semibold">
+                  Ночь демо-проектов
+                </h4>
+                <p class="mt-2 text-xs text-slate-300 sm:text-sm">
+                  Каждый показывает, что делает: pet-проекты, продукты,
+                  стартапы, экспериментальные штуки. Без «идеальных слайдов»,
+                  честный фидбек и идеи, с кем сколлабиться.
+                </p>
+              </div>
+
+              <!-- Card 4 -->
+              <div
+                class="rounded-3xl border border-slate-700 bg-slate-950/80 p-4"
+              >
+                <p
+                  class="text-[10px] font-mono uppercase tracking-[0.16em] text-slate-400"
+                >
+                  04 / Energy Activities
+                </p>
+                <h4 class="mt-2 text-[15px] font-semibold">
+                  SUP, бег, движение
+                </h4>
+                <p class="mt-2 text-xs text-slate-300 sm:text-sm">
+                  Лёгкие активности для тех, кто хочет не только думать, но и
+                  жить телом: пробежки, SUP, прогулки. Без фанатизма и
+                  соревновательности, просто чтобы было больше жизни.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- WHO -->
+        <section id="who" class="border-b border-white/5 bg-black/50">
+          <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+            <div class="mb-6">
+              <h2
+                class="text-xs font-mono uppercase tracking-[0.2em] text-neonCyan"
+              >
+                / for_whom
+              </h2>
+              <h3 class="text-xl font-semibold sm:text-2xl">
+                Для кого этот клуб
+              </h3>
+              <p class="mt-3 text-sm text-slate-300">
+                Если ты узнаешь себя хотя бы в двух пунктах — ты наш человек.
+              </p>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-3 text-xs sm:text-sm">
+              <div
+                class="rounded-2xl border border-slate-700 bg-slate-950/70 p-3"
+              >
+                <p class="font-semibold text-slate-100 mb-1.5">IT & around</p>
+                <ul class="space-y-1 text-slate-300">
+                  <li>разработчики</li>
+                  <li>DevOps / SRE</li>
+                  <li>дизайнеры, PM, маркетинг</li>
+                  <li>фаундеры и соло-предприниматели</li>
+                </ul>
+              </div>
+
+              <div
+                class="rounded-2xl border border-slate-700 bg-slate-950/70 p-3"
+              >
+                <p class="font-semibold text-slate-100 mb-1.5">Про состояние</p>
+                <ul class="space-y-1 text-slate-300">
+                  <li>хочешь ясную голову и энергию</li>
+                  <li>устал от тусовок в барах</li>
+                  <li>выбираешь спорт и движение</li>
+                  <li>хочешь нормальное окружение</li>
+                </ul>
+              </div>
+
+              <div
+                class="rounded-2xl border border-slate-700 bg-slate-950/70 p-3"
+              >
+                <p class="font-semibold text-slate-100 mb-1.5">Про смысл</p>
+                <ul class="space-y-1 text-slate-300">
+                  <li>делаешь проекты, а не только говоришь</li>
+                  <li>важна поддержка и обмен опытом</li>
+                  <li>хочешь, чтобы жизнь была «нормальной»</li>
+                  <li>не хочешь держаться за алкоголиков</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- JOIN / FORM -->
+        <section
+          id="join"
+          class="border-b border-white/5 bg-gradient-to-b from-slate-950 to-black"
+        >
+          <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+            <div class="mb-6 text-center">
+              <h2
+                class="text-xs font-mono uppercase tracking-[0.2em] text-neonCyan"
+              >
+                / join_core
+              </h2>
+              <h3 class="mt-1 text-xl font-semibold sm:text-2xl">
+                Войти в ядро НеБар Тех Клуба
+              </h3>
+              <p class="mt-3 text-sm text-slate-300 sm:text-[15px]">
+                На старте мы собираем небольшую группу людей с похожим вайбом.
+                Оставь контакты — и мы напишем, когда будет первая встреча.
+              </p>
+            </div>
+
+            <div
+              class="mx-auto max-w-xl rounded-3xl border border-neonCyan/50 bg-slate-950/80 p-5 shadow-neon"
+            >
+              <!-- Здесь ты дальше сам подключишь обработчик формы (например, Tally, Getform, Telegram Bot и т.п.) -->
+              <form class="space-y-4">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label
+                      class="mb-1 block text-xs font-medium text-slate-200"
+                      for="name"
+                      >Имя</label
+                    >
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      class="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 outline-none ring-0 focus:border-neonCyan focus:ring-1 focus:ring-neonCyan"
+                      placeholder="Как к тебе обращаться?"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="mb-1 block text-xs font-medium text-slate-200"
+                      for="tg"
+                      >Telegram @</label
+                    >
+                    <input
+                      id="tg"
+                      type="text"
+                      required
+                      class="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 outline-none focus:border-neonCyan focus:ring-1 focus:ring-neonCyan"
+                      placeholder="@handle"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    class="mb-1 block text-xs font-medium text-slate-200"
+                    for="role"
+                    >Чем ты занимаешься?</label
+                  >
+                  <input
+                    id="role"
+                    type="text"
+                    class="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 outline-none focus:border-neonCyan focus:ring-1 focus:ring-neonCyan"
+                    placeholder="Backend dev, продуктовый дизайнер, фаундер..."
+                  />
+                </div>
+
+                <div>
+                  <label
+                    class="mb-1 block text-xs font-medium text-slate-200"
+                    for="expect"
+                    >Что хочешь от клуба?</label
+                  >
+                  <textarea
+                    id="expect"
+                    rows="3"
+                    class="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100 outline-none focus:border-neonCyan focus:ring-1 focus:ring-neonCyan"
+                    placeholder="Окружение, прогулки, совместная работа, демо-проекты, спорт..."
+                  ></textarea>
+                </div>
+
+                <div class="flex flex-col gap-2 text-xs text-slate-400">
+                  <label class="inline-flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="h-3.5 w-3.5 rounded border-slate-600 bg-slate-900 text-neonCyan focus:ring-neonCyan"
+                      checked
+                    />
+                    <span>Я окей с форматом без алкоголя.</span>
+                  </label>
+                  <label class="inline-flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      class="h-3.5 w-3.5 rounded border-slate-600 bg-slate-900 text-neonCyan focus:ring-neonCyan"
+                      checked
+                    />
+                    <span>Готов иногда приходить на оффлайн-встречи.</span>
+                  </label>
+                </div>
+
+                <button
+                  type="button"
+                  class="neon-button mt-2 w-full rounded-full bg-neonCyan px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
+                >
+                  Отправить заявку
+                </button>
+
+                <p class="mt-2 text-center text-[11px] text-slate-500">
+                  На старте мы запускаем маленькие группы. Если не ответим
+                  сразу — это не про тебя, это про нашу неспешность 🙂.
+                </p>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="bg-black/80">
+        <div
+          class="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 text-[11px] text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6"
+        >
+          <div class="font-mono">
+            <span class="text-slate-400">НеБар Тех Клуб</span>
+            <span class="mx-2 text-slate-600">/</span>
+            <span>Alcohol: OFF · Focus: ON</span>
+          </div>
+          <div class="text-[10px] font-mono text-slate-500">
+            <span class="text-neonCyan">LOAD COMPLETED</span> — see you
+            offline.
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
